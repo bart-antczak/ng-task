@@ -15,4 +15,10 @@ Rails.application.routes.draw do
       get :export
     end
   end
+
+  get 'movies_api', to: 'movies#api_index', as: 'movies_api'
+  get 'movie_api/:id', to: 'movies#api_show', as: 'movie_api'
+
+  get 'genres_api', to: 'genres#api_index', as: 'genres_api'
+
 end

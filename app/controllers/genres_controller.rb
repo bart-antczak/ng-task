@@ -6,4 +6,9 @@ class GenresController < ApplicationController
   def movies
     @genre = Genre.find(params[:id]).decorate
   end
+
+  def api_index
+    @genres = Genre.all
+  end
+
 end
