@@ -41,3 +41,5 @@ group :test do
 end
 
 gem 'jbuilder', '~> 2.5'
+
+gem 'sidekiq'
