@@ -1,5 +1,12 @@
-%h1= @movie.title
-.jumbotron
-  = @movie.description
+%h1= @res_data["data"]["attributes"]["title"]
+.container
+  .row
+    .col-md-2
+      %img(class="poster" src="https://pairguru-api.herokuapp.com/#{@res_data["data"]["attributes"]["poster"]}")
+    .col-md-10
+      %p Plot:
+      %p(class= "plot")= @res_data["data"]["attributes"]["plot"]
+      %p Rating:
+      %p(class= "raiting")= @res_data["data"]["attributes"]["rating"]
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'

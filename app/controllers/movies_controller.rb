@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
@@ -7,6 +10,11 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @title = Movie.find(params[:id]).title.gsub(/ /, '%20')
+    url_data = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
+    uri_data = URI(url_data)
+    response_data = Net::HTTP.get(uri_data)
+    @res_data = JSON.parse(response_data)
   end
 
   def send_info
