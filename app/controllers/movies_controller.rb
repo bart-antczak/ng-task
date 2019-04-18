@@ -28,4 +28,13 @@ class MoviesController < ApplicationController
     MovieExporter.new.call(current_user, file_path)
     redirect_to root_path, notice: "Movies exported"
   end
+
+  def api_index
+    @movies = Movie.all
+  end
+
+  def api_show
+    @movie = Movie.find(params[:id])
+  end
+
 end
