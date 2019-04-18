@@ -1,11 +1,12 @@
-%h1= @res["data"]["attributes"]["title"]
+%h1= @res_data["data"]["attributes"]["title"]
 .container
   .row
     .col-md-2
-      Works
+      %img(class="poster" src="https://pairguru-api.herokuapp.com/#{@res_data["data"]["attributes"]["title"].downcase}.jpg")
     .col-md-10
-      Works
+      %p Plot:
+      %p(class= "plot")= @res_data["data"]["attributes"]["plot"]
 .jumbotron
-  = @res["data"]["attributes"]["plot"]
+  = @res_data["data"]["attributes"]["plot"]
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'

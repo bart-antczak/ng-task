@@ -11,10 +11,10 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @title = Movie.find(params[:id]).title
-    url = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    @res = JSON.parse(response)
+    url_data = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
+    uri_data = URI(url_data)
+    response_data = Net::HTTP.get(uri_data)
+    @res_data = JSON.parse(response_data)
   end
 
   def send_info
