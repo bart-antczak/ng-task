@@ -1,5 +1,11 @@
-%h1= @movie.title
+%h1= @res["data"]["attributes"]["title"]
+.container
+  .row
+    .col-md-2
+      Works
+    .col-md-10
+      Works
 .jumbotron
-  = @movie.description
+  = @res["data"]["attributes"]["plot"]
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
