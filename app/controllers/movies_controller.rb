@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @title = Movie.find(params[:id]).title
+    @title = Movie.find(params[:id]).title.gsub(/ /, '%20')
     url_data = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
     uri_data = URI(url_data)
     response_data = Net::HTTP.get(uri_data)
