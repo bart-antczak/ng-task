@@ -1,0 +1,4 @@
+%p= current_user.name
+%p= comment.content
+-if comment.user_id == current_user.id
+  %p= link_to 'Delete', destroy_comment_path(comment.id), remote: true, method: :delete

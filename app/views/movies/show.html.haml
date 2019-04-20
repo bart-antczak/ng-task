@@ -8,5 +8,13 @@
       %p(class= "plot")= @res_data["data"]["attributes"]["plot"]
       %p Rating:
       %p(class= "raiting")= @res_data["data"]["attributes"]["rating"]
+
+#comments
+  =render @comments
+
 - if user_signed_in?
+
+  #new-comment
+    =render 'new_comment'
+
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
