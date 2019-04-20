@@ -3,4 +3,8 @@
     %h1.text-center Welcome to Pairguru App!
     %p.lead.text-center Place where we examine our candidates
 
-
+.row
+  %p The most active commenters
+  - @commenters.each do |comemnter|
+    =User.find(comemnter[0]).name
+    =comemnter[1]

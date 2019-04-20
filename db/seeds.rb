@@ -70,6 +70,16 @@ movies = [
 
 Rails.logger.info "Creating movies..."
 
+20.times do |i|
+  Comment.create!(
+     content: Faker::Lorem.paragraph(5),
+     user_id: i.zero? ? "1" : i + 1,
+     movie_id: i.zero? ? "1" : i + 1
+  )
+end
+
+Rails.logger.info "Creating comments..."
+
 genre_ids = Genre.pluck(:id)
 if Movie.count < 100
   100.times do
