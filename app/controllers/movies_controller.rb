@@ -4,6 +4,8 @@ require 'json'
 class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
+  include MoviesHelper
+
   def index
     @movies = Movie.all.decorate
   end
@@ -13,10 +15,14 @@ class MoviesController < ApplicationController
     @title = Movie.find(params[:id]).title.gsub(/ /, '%20')
     url_data = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
     uri_data = URI(url_data)
-    response_data = Net::HTTP.get(uri_data)
-    @comments = Comment.where(movie_id: params[:id])
-    @comment = Comment.new
-    @res_data = JSON.parse(response_data)
+    if internet_connection?
+      response_data = Net::HTTP.get(uri_data)
+      @comments = Comment.where(movie_id: params[:id])
+      @comment = Comment.new
+      @res_data = JSON.parse(response_data)
+    else
+      redirect_to root_path
+    end
   end
 
   def send_info

@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
 
   validate :one_comment
+  validates :content, :presence => true
 
   private
 

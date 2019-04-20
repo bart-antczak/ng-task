@@ -2,8 +2,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
-    redirect_back fallback_location: root_path
+    if @comment.save
+      redirect_back fallback_location: root_path
+    else
+      redirect_back fallback_location: root_path
+    end
   end
 
   def destroy

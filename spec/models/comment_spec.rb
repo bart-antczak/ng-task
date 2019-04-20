@@ -1,5 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context 'validation tests' do
+
+    it 'ensure content presence' do
+
+    end
+
+    it 'ensure user id presence' do
+
+    end
+
+    it 'ensure movie id presence' do
+
+    end
+
+  end
+
 end
