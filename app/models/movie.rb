@@ -15,4 +15,23 @@
 class Movie < ApplicationRecord
   belongs_to :genre
   has_many :comment
+
+=begin
+    before_save :valid_string?
+    before_update :valid_string?
+
+    private
+
+    def valid_string?
+      str = comment.title
+      stack = []
+      symbols = { '{' => '}', '[' => ']', '(' => ')' }
+      str.each_char do |c|
+        stack << c if symbols.key?(c)
+        return false if symbols.key(c) && symbols.key(c) != stack.pop
+      end
+      stack.empty?
+    end
+=end
+
 end
