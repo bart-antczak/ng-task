@@ -3,4 +3,16 @@
     %h1.text-center Welcome to Pairguru App!
     %p.lead.text-center Place where we examine our candidates
 
-
+.row{style: 'text-align: center'}
+  %p The most active commenters
+  %table{id: 'commenters'}
+    %tbody
+      %tr
+        %td Rank
+        %td Name
+        %td Comments
+      - @commenters.to_enum.with_index(1).each do |comemnter, index|
+        %tr
+          %td= index
+          %td= User.find(comemnter[0]).name
+          %td= comemnter[1]

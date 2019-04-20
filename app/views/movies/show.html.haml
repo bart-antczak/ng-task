@@ -14,7 +14,7 @@
 
 #new-comment
   -if user_signed_in?
-    -if !commented?
+    -if !commented?(params[:id])
       =render 'new_comment', locals: {movie_id: params[:id]}
 
 %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
