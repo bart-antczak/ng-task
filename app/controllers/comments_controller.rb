@@ -1,23 +1,15 @@
 class CommentsController < ApplicationController
 
   def create
-    respond_to do |format|
-      format.js {
-        @comment = Comment.new(comment_params)
-        @comment.save
-        @comments = Comment.all
-      }
-    end
+    @comment = Comment.new(comment_params)
+    @comment.save
+    redirect_back fallback_location: root_path
   end
 
   def destroy
-    respond_to do |format|
-      format.js {
-        @comment = Comment.where(id: params[:id])
-        @comment.destroy(params[:id])
-        @comments = Comment.all
-      }
-    end
+    @comment = Comment.where(id: params[:id])
+    @comment.destroy(params[:id])
+    redirect_back fallback_location: root_path
   end
 
   private

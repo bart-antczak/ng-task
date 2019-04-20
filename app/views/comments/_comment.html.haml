@@ -1,4 +1,10 @@
-%p= current_user.name
-%p= comment.content
--if comment.user_id == current_user.id
-  %p= link_to 'Delete', destroy_comment_path(comment.id), remote: true, method: :delete
+.row.comment
+  .col-sm-2.col-md-2.col-lg-2
+    %p= User.find(comment.user_id).name
+  .col-sm-10.col-md-10.col-lg-10
+    %p= comment.content
+    .delete-button
+      -if user_signed_in?
+        -if comment.user_id == current_user.id
+          %p= link_to 'Delete', destroy_comment_path(comment.id, movie_id: params[:id]), class: 'btn', method: :delete
+

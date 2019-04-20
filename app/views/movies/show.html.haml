@@ -1,20 +1,20 @@
 %h1= @res_data["data"]["attributes"]["title"]
 .container
   .row
-    .col-md-2
+    .col-sm-2.col-md-2.col-lg-2
       %img(class="poster" src="https://pairguru-api.herokuapp.com/#{@res_data["data"]["attributes"]["poster"]}")
-    .col-md-10
+    .col-sm-10.col-md-10.col-lg-10
       %p Plot:
       %p(class= "plot")= @res_data["data"]["attributes"]["plot"]
       %p Rating:
       %p(class= "raiting")= @res_data["data"]["attributes"]["rating"]
 
 #comments
-  =render @comments
+  =render 'show_comments'
 
-- if user_signed_in?
+#new-comment
+  -if user_signed_in?
+    -if !commented?
+      =render 'new_comment', locals: {movie_id: params[:id]}
 
-  #new-comment
-    =render 'new_comment'
-
-  %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+%p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
