@@ -14,6 +14,8 @@ class MoviesController < ApplicationController
     url_data = "https://pairguru-api.herokuapp.com/api/v1/movies/" + @title + ""
     uri_data = URI(url_data)
     response_data = Net::HTTP.get(uri_data)
+    @comments = Comment.where(movie_id: params[:id])
+    @comment = Comment.new
     @res_data = JSON.parse(response_data)
   end
 

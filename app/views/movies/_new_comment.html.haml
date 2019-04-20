@@ -1,0 +1,6 @@
+= form_for @comment, url: {controller: 'comments', action: "create"} do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :movie_id, value: params[:id]
+  = f.label 'Your comment'
+  = f.text_area :content
+  = f.submit 'Add'
